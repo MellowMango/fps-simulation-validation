@@ -1,0 +1,21 @@
+run_name: "baseline_N5"
+seed: 42
+T: 20.0
+Δt: 0.01
+n_strata: 5
+strata_defaults:
+  A0: 1.0
+  f0: 1.0
+  φ0: 0.0
+  γ0: 1.0
+  α: 0.1
+  β: 0.05
+  λ: 0.01
+feedback:
+  G: "tanh"
+noise:
+  type: "uniform"
+  scale: 0.1
+logging:
+  every_step: 10
+  format: "csv"
