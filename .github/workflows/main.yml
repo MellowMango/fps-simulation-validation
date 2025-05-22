@@ -1,0 +1,20 @@
+# .github/workflows/auto-resolve.yml
+name: Auto-rebase-prefer-PR
+on:
+  pull_request_target:
+    types: [opened, synchronize, ready_for_review, reopened]
+jobs:
+  rebase:
+    if: github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}   # the PR branch
+          fetch-depth: 0
+      - run: |
+          git config user.name  "merge-bot"
+          git config user.email "bot@example.com"
+          git fetch origin ${{ github.base_ref }}
+          git merge -s ort -X theirs origin/${{ github.base_ref }} --commit -m "Auto-merge main into PR"
+          git push origin HEAD
