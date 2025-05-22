@@ -1,20 +1,40 @@
-# .github/workflows/auto-resolve.yml
-name: Auto-rebase-prefer-PR
+# .github/workflows/auto-rebase-and-merge.yml
+name: Auto-rebase-then-merge
+
 on:
   pull_request_target:
     types: [opened, synchronize, ready_for_review, reopened]
+
+permissions:
+  contents: write          # needed for pushing & merging
+  pull-requests: write
+
 jobs:
+
   rebase:
     if: github.event.pull_request.draft == false
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref }}   # the PR branch
+          ref: ${{ github.head_ref }}
           fetch-depth: 0
       - run: |
           git config user.name  "merge-bot"
           git config user.email "bot@example.com"
           git fetch origin ${{ github.base_ref }}
-          git merge -s ort -X theirs origin/${{ github.base_ref }} --commit -m "Auto-merge main into PR"
+          git merge -s ort -X theirs origin/${{ github.base_ref }} \
+            --commit -m "Auto-merge main into PR"
           git push origin HEAD
+
+  merge:
+    needs: rebase
+    if: ${{ needs.rebase.result == 'success' }}    # CI steps could live here
+    runs-on: ubuntu-latest
+    steps:
+      - name: Squash-merge the PR
+        uses: peter-evans/merge-pull-request@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          merge_method: squash      # or merge / rebase
+          commit_title: "♻️ Auto-merge PR #${{ github.event.pull_request.number }}"
