@@ -1,0 +1,3 @@
+metric,value,threshold,condition,rationale,max_ratio
+stability,0.9289473684210526,0.95,max(S)/median(S) < 10 on ≥ 95% of steps,No blow-ups allowed,114.56467370448355
+stability,0.9289473684210526,0.95,max(S)/median(S) < 10 on ≥ 95% of steps,No blow-ups allowed,114.56467370448355
