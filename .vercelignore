@@ -1,0 +1,49 @@
+# Python virtual environment
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Jupyter notebooks
+notebooks/
+*.ipynb
+
+# Data and logs
+data/
+*.log
+
+# Testing artifacts
+.pytest_cache/
+.hypothesis/
+.coverage
+htmlcov/
+
+# Development files
+.git/
+.gitignore
+*.md
+study.md
+
+# Python source (not needed for frontend deployment)
+src/
+scripts/
+config/
+validation_artifacts/
+criteria_failures.csv
+
+# Node modules (will be installed during build)
+frontend/node_modules/
+frontend/.svelte-kit/
+frontend/build/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db 

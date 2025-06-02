@@ -417,7 +417,7 @@
                     <li>• Stability: 92.9% vs 95% threshold</li>
                     <li>• Frequency coupling creates occasional spikes</li>
                     <li>• Parameter tuning needed for α, w values</li>
-                    <li>• Max/median ratio: 114.6x (need < 10x)</li>
+                    <li>• Max/median ratio: 114.6x (need &lt; 10x)</li>
                   </ul>
                 </div>
               </div>
@@ -573,7 +573,7 @@
                     </div>
                     <div class="flex justify-between">
                       <span class="text-gray-300">Fluidity:</span>
-                      <span class="text-green-400 font-semibold">0.000013 < 0.01 ✅</span>
+                      <span class="text-green-400 font-semibold">0.000013 &lt; 0.01 ✅</span>
                     </div>
                     <div class="flex justify-between">
                       <span class="text-gray-300">Innovation:</span>

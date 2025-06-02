@@ -1,0 +1,8 @@
+{
+  "buildCommand": "cd frontend && pnpm install && pnpm run build",
+  "outputDirectory": "frontend/build",
+  "installCommand": "cd frontend && pnpm install",
+  "env": {
+    "NODE_ENV": "production"
+  }
+} 
